@@ -29,10 +29,55 @@ class SettingView extends GetView<SettingController> {
                 height: 20,
               ),
 
-              CustomTextField(
-                hintText: 'API Key',
-                controller: controller.apikey,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                ),
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                  ),
+                  child: Obx(
+                    () => TextFormField(
+                      controller: controller.apikey,
+                      obscureText: controller.isPasswordHidden.value,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Pallete.gradient2,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'API Key',
+                        suffixIcon: InkWell(
+                          child: Icon(
+                            controller.isPasswordHidden.value
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            size: 20,
+                          ),
+                          onTap: () {
+                            controller.isPasswordHidden.value =
+                                !controller.isPasswordHidden.value;
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
+
+              // CustomTextField(
+              //   hintText: 'API Key',
+              //   controller: controller.apikey,
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -116,9 +161,49 @@ class SettingView extends GetView<SettingController> {
                 child: ExpansionTile(
                   title: const Text("Enter ChatGpt Api Key"),
                   children: <Widget>[
-                    CustomTextField(
-                      hintText: 'ChatGpt Api Key',
-                      controller: controller.apichatGpt,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        bottom: 10,
+                      ),
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                        ),
+                        child: Obx(
+                          () => TextFormField(
+                            controller: controller.apichatGpt,
+                            obscureText: controller.isPasswordHidden.value,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Pallete.gradient2,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              labelText: 'API Key',
+                              suffixIcon: InkWell(
+                                child: Icon(
+                                  controller.isPasswordHidden.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  size: 20,
+                                ),
+                                onTap: () {
+                                  controller.isPasswordHidden.value =
+                                      !controller.isPasswordHidden.value;
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -166,49 +251,43 @@ class SettingView extends GetView<SettingController> {
                         ),
                       ),
                     ),
+                    InkWell(
+                      onHover: (value) {},
+                      onTap: () async {
+                        Uri url =
+                            Uri.parse('https://platform.openai.com/api-keys');
+                        launchUrl(url);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 20,
+                          bottom: 20,
+                        ),
+                        child: Center(
+                          child: InkWell(
+                            child: MouseRegion(
+                              child: Obx(
+                                () => Text(
+                                  controller.regsetting.value,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              // Button Get Url Shortener
-
-              // Get Resonse  Email
-              // Obx(
-              //   () => Row(
-              //     children: [
-              //       Padding(
-              //         padding: const EdgeInsets.only(right: 20, left: 20),
-              //         child: Text(
-              //           controller.sname.value,
-              //           style: const TextStyle(
-              //             fontSize: 16,
-              //             fontWeight: FontWeight.bold,
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // Get Resonse Email
-              // Obx(() => Row(
-              //       children: [
-              //         Padding(
-              //           padding: const EdgeInsets.only(right: 20, left: 20),
-              //           child: Text(
-              //             controller.semail.value,
-              //             style: const TextStyle(
-              //               fontSize: 16,
-              //               fontWeight: FontWeight.bold,
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     )),
             ],
           ),
         ),

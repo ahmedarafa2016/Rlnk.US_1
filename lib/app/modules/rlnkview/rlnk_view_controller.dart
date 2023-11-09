@@ -13,6 +13,7 @@ class RlnkController extends GetxController {
 
   final formkey = GlobalKey<FormState>();
   final isLoading = false.obs;
+  var isPasswordHidden = true.obs;
   String urlhascode = "";
 
   TextEditingController urlController = TextEditingController();

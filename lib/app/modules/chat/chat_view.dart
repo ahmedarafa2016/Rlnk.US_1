@@ -138,7 +138,7 @@ class _ChatViewState extends State<ChatView> {
                                           child: const Padding(
                                             padding: EdgeInsets.only(top: 8),
                                             child: FaIcon(
-                                              FontAwesomeIcons.clipboard,
+                                              FontAwesomeIcons.clipboardList,
                                               size: 21,
                                             ),
                                           ),

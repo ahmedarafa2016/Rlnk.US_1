@@ -10,6 +10,7 @@ class SettingController extends GetxController {
   TextEditingController apichatGpt = TextEditingController();
 
   final isLoading = false.obs;
+  var isPasswordHidden = true.obs;
 
   final Map<String, String> params = {
     'ver': '1',
@@ -21,6 +22,8 @@ class SettingController extends GetxController {
   RxString semail = ''.obs;
   RxString regsetting = ''.obs;
 
+  RxString regchatsetting = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -31,6 +34,12 @@ class SettingController extends GetxController {
       regsetting.value = '';
     } else {
       regsetting.value = 'Register for Api Key';
+    }
+
+    if (glb.getkeyChat() != "") {
+      regchatsetting.value = '';
+    } else {
+      regchatsetting.value = 'Register for Api Key';
     }
   }
 
@@ -78,7 +87,7 @@ class SettingController extends GetxController {
       isLoading.value = true;
       glb.savekeyChat(apichatGpt.text);
       glb.geterrmsg('Saved ChatGpt Key Data');
-      print('------------' + glb.getkeyChat());
+      // print('------------' + glb.getkeyChat());
       isLoading.value = false;
     } else {
       glb.geterrmsg('Clear Chat Gpt Key Data');

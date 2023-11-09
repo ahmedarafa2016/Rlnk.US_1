@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rlnk_1/pallete.dart';
 import 'package:rlnk_1/app/modules/rlnkview/rlnk_view_controller.dart';
-import 'package:rlnk_1/widgets/text_field.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -68,26 +67,60 @@ class RlnkView extends GetView<RlnkController> {
                     validator: (value) => controller.validateUrl(value!),
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //  ApI Key TextField
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 15,
+                    top: 10,
                     bottom: 10,
                   ),
-                  child: CustomTextField(
-                    hintText: 'Title - Optional',
-                    controller: controller.titleiController,
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: Obx(
+                      () => TextFormField(
+                        controller: controller.urlApiController,
+                        obscureText: controller.isPasswordHidden.value,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Pallete.gradient2,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          labelText: 'API Key',
+                          suffixIcon: InkWell(
+                            child: Icon(
+                              controller.isPasswordHidden.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              size: 20,
+                            ),
+                            onTap: () {
+                              controller.isPasswordHidden.value =
+                                  !controller.isPasswordHidden.value;
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
 
                 //  API Key TextField
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     top: 5,
                     bottom: 5,
-                  ),
-                  child: CustomTextField(
-                    hintText: 'API Key',
-                    controller: controller.urlApiController,
                   ),
                 ),
 
