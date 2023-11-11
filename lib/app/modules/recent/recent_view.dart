@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rlnk_1/pallete.dart';
 
@@ -268,7 +269,11 @@ class RecentView extends GetView<RecentController> {
                                     color: Colors.redAccent,
                                   ),
                                   const Spacer(
-                                    flex: 3, //
+                                    flex: 1, //
+                                  ),
+                                  const FaIcon(
+                                    FontAwesomeIcons.clipboardList,
+                                    size: 16,
                                   ),
                                 ],
                               ),
