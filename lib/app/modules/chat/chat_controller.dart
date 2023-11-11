@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:rlnk_1/app/models/hitsevent_model.dart';
 
 import '../../../globalf.dart';
 import 'chat_message.dart';
@@ -60,10 +61,10 @@ class ChatController extends GetxController {
 // header( 'Content-Type: application/json; charset=utf-8' );
 // "Content-Type": "application/json",
   Map<String, String> getHeader(String key) {
-    String Auth = "Bearer $key";
+    String auth = "Bearer $key";
     return {
       "Content-Type": "application/json; charset=utf-8",
-      "Authorization": Auth,
+      "Authorization": auth,
     };
   }
 
@@ -87,7 +88,9 @@ class ChatController extends GetxController {
 
     // add message to chat as sender type.
     _chatMessages.add(ChatMessage(
+      // message: prompt.trim(),
       message: prompt.trim(),
+
       chatMessageType: ChatMessageType.sender,
     ));
 
@@ -102,8 +105,8 @@ class ChatController extends GetxController {
 
     textController.clear();
     try {
-      print(
-          '------------------------------------------${jsonEncode(getHeader(glb.getkeyChat()))}');
+      // print(
+      //     '------------------------------------------${jsonEncode(getHeader(glb.getkeyChat()))}');
       final response = await http.post(
         baseUrl,
         headers: getHeader(glb.getkeyChat()),
@@ -119,11 +122,20 @@ class ChatController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        print('------------------------------------------');
+        // print('------------------------------------------');
 
         var res = jsonDecode(response.body);
+        // print(res);
+        // res = utf8.encode(res.trim());
+        print(
+            '----------------2222222222222222222222222--------------------------');
+
         data = res["choices"][0]["text"];
-        print(jsonDecode);
+
+        // final utf8Encoder = utf8.encoder;
+        // data = utf8Encoder.convert(data.toString());
+
+        print('------------------- Data ---------------' + data);
         data != '' ? _chatMessages.remove(_chatMessages.last) : null;
 
         // add message to chat as bot type.

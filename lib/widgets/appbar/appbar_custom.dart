@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import '../gradientrlnk.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String Appheadr;
+  final String appheadr;
   const MyAppBar({
     Key? key,
-    required this.Appheadr,
+    required this.appheadr,
   }) : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                Appheadr,
+                appheadr,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

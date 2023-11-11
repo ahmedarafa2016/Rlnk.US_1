@@ -22,7 +22,7 @@ class RlnkView extends GetView<RlnkController> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(Appheadr: 'Rlnk.Us.> Home'),
+      appBar: const MyAppBar(appheadr: 'Rlnk.Us.> Home'),
       body: SingleChildScrollView(
         child: Center(
           child: Form(
