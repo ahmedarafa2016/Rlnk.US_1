@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:rlnk_1/app/modules/rlnkview/rlnk_view_controller.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../globalf.dart';
 import '../../../widgets/appbar/appbar_custom.dart';
 import '../../../widgets/appbar/navigation_drawer.dart';
 
@@ -20,7 +22,7 @@ class RlnkView extends GetView<RlnkController> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(),
+      appBar: const MyAppBar(Appheadr: 'Rlnk.Us.> Home'),
       body: SingleChildScrollView(
         child: Center(
           child: Form(
@@ -42,7 +44,7 @@ class RlnkView extends GetView<RlnkController> {
                     width: MediaQuery.of(context).size.width,
                   ),
                 ),
-                //  Url TextField
+                //  ------- Start Url TextformField
                 Container(
                   margin: const EdgeInsets.only(
                     left: 20,
@@ -67,22 +69,19 @@ class RlnkView extends GetView<RlnkController> {
                     validator: (value) => controller.validateUrl(value!),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
                 //  ApI Key TextField
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    bottom: 10,
+                Container(
+                  margin: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
                   ),
-                  child: Container(
-                    margin: const EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: Obx(
-                      () => TextFormField(
+                  child: Obx(
+                    () => Padding(
+                      padding: const EdgeInsets.only(
+                        top: 20,
+                        bottom: 10,
+                      ),
+                      child: AutoSizeTextField(
                         controller: controller.urlApiController,
                         obscureText: controller.isPasswordHidden.value,
                         decoration: InputDecoration(
@@ -116,14 +115,7 @@ class RlnkView extends GetView<RlnkController> {
                   ),
                 ),
 
-                //  API Key TextField
-                const Padding(
-                  padding: EdgeInsets.only(
-                    top: 5,
-                    bottom: 5,
-                  ),
-                ),
-
+                //  API Key Textformfield
                 ExpansionTile(
                   title: const Text("Pin Url number"),
                   children: <Widget>[
@@ -132,34 +124,60 @@ class RlnkView extends GetView<RlnkController> {
                         right: 15,
                         left: 15,
                       ),
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        maxLength: 6,
-                        decoration: const InputDecoration(
-                          labelText: "Pin Url",
-                          icon: Icon(Icons.key),
+                      child: Obx(
+                        () => TextFormField(
+                          controller: controller.urlpinController,
+                          obscureText: controller.ispincodeHidden.value,
+                          validator: (value) =>
+                              controller.validatepincode(value!),
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          maxLength: 6,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.all(16),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Pallete.gradient2,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            labelText: 'API Key',
+                            suffixIcon: InkWell(
+                              child: Icon(
+                                controller.ispincodeHidden.value
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                size: 20,
+                              ),
+                              onTap: () {
+                                controller.ispincodeHidden.value =
+                                    !controller.ispincodeHidden.value;
+                              },
+                            ),
+                          ),
                         ),
-                        controller: controller.urlpinController,
-                        validator: (value) =>
-                            controller.validatepincode(value!),
                       ),
                     )
                   ],
                 ),
 // Register for Api Key
                 InkWell(
-                  onHover: (value) {},
                   onTap: () async {
-                    Uri url =
-                        Uri.parse('https://www.rlnk.us/login/register.php');
-                    launchUrl(url);
+                    Globalf().openregUrl(controller.visUrl.value, 1);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(
-                      top: 15,
+                      top: 10,
                       bottom: 15,
                     ),
                     child: Center(

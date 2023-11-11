@@ -10,7 +10,11 @@ class SettingController extends GetxController {
   TextEditingController apichatGpt = TextEditingController();
 
   final isLoading = false.obs;
+  final isLoadingChat = false.obs;
   var isPasswordHidden = true.obs;
+  var visUrl = true.obs;
+  var visUrlchat = true.obs;
+  var isPasswordHiddenchat = true.obs;
 
   final Map<String, String> params = {
     'ver': '1',
@@ -21,7 +25,6 @@ class SettingController extends GetxController {
   RxString sname = ''.obs;
   RxString semail = ''.obs;
   RxString regsetting = ''.obs;
-
   RxString regchatsetting = ''.obs;
 
   @override
@@ -32,14 +35,18 @@ class SettingController extends GetxController {
 
     if (glb.getkey() != "") {
       regsetting.value = '';
+      visUrl.value = false;
     } else {
       regsetting.value = 'Register for Api Key';
+      visUrl.value = true;
     }
 
     if (glb.getkeyChat() != "") {
       regchatsetting.value = '';
+      visUrlchat.value = false;
     } else {
-      regchatsetting.value = 'Register for Api Key';
+      regchatsetting.value = 'Register for Chat Api Key';
+      visUrlchat.value = true;
     }
   }
 
@@ -51,8 +58,8 @@ class SettingController extends GetxController {
       params['key'] = apikey.text;
       final response = await glb.postData(jsonEncode(params));
       final jsonResponse = jsonDecode(response);
-      isLoading.value = false;
 
+      // print('------------' + response);
       if (jsonResponse['status'] == "success") {
         semail.value = jsonResponse['email'];
         sname.value = jsonResponse['name'];
@@ -60,6 +67,7 @@ class SettingController extends GetxController {
         glb.savename(sname.value);
         glb.saveemail(semail.value);
         regsetting.value = '';
+        isLoading.value = false;
 
         glb.geterrmsg(jsonResponse['message']);
 
@@ -71,6 +79,7 @@ class SettingController extends GetxController {
         glb.savename('');
         glb.saveemail('');
         regsetting.value = 'Register for Api Key';
+        isLoading.value = false;
       }
     } else {
       glb.geterrmsg('Clear Api Key Data');
@@ -84,15 +93,18 @@ class SettingController extends GetxController {
 //Add Cht
   chatGptAdd() {
     if (apichatGpt.text != '') {
-      isLoading.value = true;
+      isLoadingChat.value = true;
       glb.savekeyChat(apichatGpt.text);
       glb.geterrmsg('Saved ChatGpt Key Data');
+      regchatsetting.value = '';
       // print('------------' + glb.getkeyChat());
-      isLoading.value = false;
+      isLoadingChat.value = false;
     } else {
       glb.geterrmsg('Clear Chat Gpt Key Data');
+      regchatsetting.value = 'Register for Chat Api Key';
+      isLoadingChat.value = false;
+      visUrlchat.value = false;
       glb.savekeyChat('');
-      isLoading.value = true;
     }
   }
 }

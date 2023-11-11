@@ -7,6 +7,7 @@ class AccountController extends GetxController {
   RxString sname = ''.obs;
   RxString semail = ''.obs;
   RxString apicontroller = ''.obs;
+  var visUrl = true.obs;
 
   @override
   void onInit() {

@@ -14,7 +14,7 @@ class RecentView extends GetView<RecentController> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(),
+      appBar: const MyAppBar(Appheadr: 'Rlnk.Us.> Recent'),
       body: Column(
         children: [
           Padding(

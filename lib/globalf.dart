@@ -146,4 +146,23 @@ class Globalf {
       throw 'Could not launch $url';
     }
   }
+
+  openregUrl(bool val, int key) async {
+    if (val == true) {
+      if (key == 1) {
+        Uri url = Uri.parse('https://www.rlnk.us/login/register.php');
+        launchUrl(url);
+      } else if (key == 2) {
+        Uri url = Uri.parse('https://platform.openai.com/api-keys');
+        launchUrl(url);
+      }
+    }
+  }
+
+  // Uri url = Uri.parse('https://www.rlnk.us/login/register.php');
+  // if (await canLaunchUrl(url)) {
+  //   await launchUrl(url);
+  // } else {
+  //   throw 'Could not launch $url';
+  // }
 }

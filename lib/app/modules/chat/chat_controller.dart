@@ -57,10 +57,12 @@ class ChatController extends GetxController {
     // print('-------------------' + chatgptKey);
   }
 
+// header( 'Content-Type: application/json; charset=utf-8' );
+// "Content-Type": "application/json",
   Map<String, String> getHeader(String key) {
     String Auth = "Bearer $key";
     return {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
       "Authorization": Auth,
     };
   }
@@ -102,8 +104,6 @@ class ChatController extends GetxController {
     try {
       print(
           '------------------------------------------${jsonEncode(getHeader(glb.getkeyChat()))}');
-      // print(baseUrl);
-      // print(header);
       final response = await http.post(
         baseUrl,
         headers: getHeader(glb.getkeyChat()),
@@ -115,20 +115,6 @@ class ChatController extends GetxController {
           "top_p": 1.0,
           "frequency_penalty": 0.0,
           "presence_penalty": 0.0,
-
-          // "prom"pt": prompt,
-
-          // "suffix": "7 8 9 10",
-          // "temperature": 0.3,
-
-          // "choices": [
-          //   {
-          //     "text": " 5 6 7 8 9",
-          //     "index": 0,
-          //     "logprobs": null,
-          //     "finish_reason": "length"
-          //   }
-          // ],
         }),
       );
 
@@ -156,7 +142,7 @@ class ChatController extends GetxController {
           message: res['error']['message'].toString().trim(),
           chatMessageType: ChatMessageType.bot,
         ));
-        // print('---------- ' + res['error']['message']);
+        print('---------- ' + res['error']['message']);
       }
     } catch (e) {
       _isError.value = true;
@@ -166,3 +152,18 @@ class ChatController extends GetxController {
     }
   }
 }
+
+
+ // "prom"pt": prompt,
+
+          // "suffix": "7 8 9 10",
+          // "temperature": 0.3,
+
+          // "choices": [
+          //   {
+          //     "text": " 5 6 7 8 9",
+          //     "index": 0,
+          //     "logprobs": null,
+          //     "finish_reason": "length"
+          //   }
+          // ],

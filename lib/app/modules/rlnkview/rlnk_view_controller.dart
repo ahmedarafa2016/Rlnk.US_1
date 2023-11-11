@@ -14,6 +14,9 @@ class RlnkController extends GetxController {
   final formkey = GlobalKey<FormState>();
   final isLoading = false.obs;
   var isPasswordHidden = true.obs;
+  var ispincodeHidden = true.obs;
+  var visUrl = true.obs;
+
   String urlhascode = "";
 
   TextEditingController urlController = TextEditingController();
@@ -44,8 +47,10 @@ class RlnkController extends GetxController {
     urlApiController.text = glb.getkey();
     if (glb.getkey() != "") {
       regrlnk.value = '';
+      visUrl.value = false;
     } else {
       regrlnk.value = 'Register for Api Key';
+      visUrl.value = true;
     }
   }
 
@@ -91,6 +96,7 @@ class RlnkController extends GetxController {
       urlhascode = calcval.toString().hashCode.toRadixString(16);
 
       if (urlhascode == glb.geturlhash()) {
+        isLoading.value = false;
         return;
       }
     }

@@ -25,7 +25,7 @@ class AboutView extends GetView<AboutController> {
     return SafeArea(
       child: Scaffold(
         endDrawer: NavDrawer(),
-        appBar: const MyAppBar(),
+        appBar: const MyAppBar(Appheadr: 'Rlnk.Us.> About'),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),

@@ -25,7 +25,7 @@ class StatisticController extends GetxController {
   void onInit() {
     super.onInit();
     getApikey = glb.getkey();
-    slnk.value = 'Url Statistics :${Get.arguments['slnk']}';
+    slnk.value = '${Get.arguments['slnk']}';
     makeHttpRequest();
   }
 
