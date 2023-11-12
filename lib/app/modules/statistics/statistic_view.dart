@@ -20,7 +20,7 @@ class StatisticView extends GetView<StatisticController> {
         ),
         title: const Center(
           child: Text(
-            'Rlnk.Us.> Statatistics',
+            'Rlnk.Us - > Statatistics',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,

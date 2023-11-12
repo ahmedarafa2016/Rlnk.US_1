@@ -143,10 +143,13 @@ class _ChatViewState extends State<ChatView> {
                                             ),
                                           ),
                                           onTap: () {
-                                            Clipboard.setData(ClipboardData(
-                                              text: controller
-                                                  .chatMessages[index].message,
-                                            ));
+                                            Clipboard.setData(
+                                              ClipboardData(
+                                                text: controller
+                                                    .chatMessages[index]
+                                                    .message,
+                                              ),
+                                            );
                                           },
                                         )
                                       ],

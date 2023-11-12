@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../globalf.dart';
 import '../../../widgets/appbar/appbar_custom.dart';
 import '../../../widgets/appbar/navigation_drawer.dart';
+import '../../../widgets/text_field.dart';
 
 class RlnkView extends GetView<RlnkController> {
   @override
@@ -22,7 +23,7 @@ class RlnkView extends GetView<RlnkController> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(appheadr: 'Rlnk.Us.> Home'),
+      appBar: const MyAppBar(appheadr: 'Rlnk.Us - > Home'),
       body: SingleChildScrollView(
         child: Center(
           child: Form(
@@ -67,6 +68,16 @@ class RlnkView extends GetView<RlnkController> {
                         prefixIcon: const Icon(Icons.add_link_sharp)),
                     controller: controller.urlController,
                     validator: (value) => controller.validateUrl(value!),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 15,
+                    bottom: 10,
+                  ),
+                  child: CustomTextField(
+                    hintText: 'Title - Optional',
+                    controller: controller.titleiController,
                   ),
                 ),
                 //  ApI Key TextField

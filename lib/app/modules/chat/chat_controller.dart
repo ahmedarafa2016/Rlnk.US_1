@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:rlnk_1/app/models/hitsevent_model.dart';
 
 import '../../../globalf.dart';
 import 'chat_message.dart';
@@ -29,7 +28,9 @@ class ChatController extends GetxController {
   final textController = TextEditingController();
   final scrollController = ScrollController();
 
-  final baseUrl = Uri.https('api.openai.com', 'v1/completions');
+//	https://api.openai.com/v1/chat/completions
+  // final baseUrl = Uri.https('api.openai.com', 'v1/completions');
+  final baseUrl = Uri.https('api.openai.com', 'v1/chat/completions');
 
   // Map<String, String> header = {
   //   "Content-Type": "application/json",
@@ -122,20 +123,40 @@ class ChatController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        // print('------------------------------------------');
-
         var res = jsonDecode(response.body);
+
         // print(res);
         // res = utf8.encode(res.trim());
-        print(
-            '----------------2222222222222222222222222--------------------------');
 
         data = res["choices"][0]["text"];
-
+        // Encoding.getByName('windows-1252')!.encode(responseString)
+        print('------------------- Data ---------------' + data);
         // final utf8Encoder = utf8.encoder;
         // data = utf8Encoder.convert(data.toString());
 
-        print('------------------- Data ---------------' + data);
+        // Convert Windows-1252 text to UTF-8
+//         if (data.contains(RegExp(r'[\x80-\xFF]'))) {
+//           print('----------------------------------');
+//           var responseBytes = utf8.encode(data);
+//           print('1111111111111111111111111111111');
+
+//           var responseString =
+//               Encoding.getByName('windows-1252')!.decode(responseBytes);
+//           print('2222222222222222222222222222');
+// // Now convert it to UTF-8.
+//           var utf8ResponseBytes =
+//               Encoding.getByName('windows-1252')!.encode(responseString);
+//           var utf8ResponseString = utf8.decode(utf8ResponseBytes);
+
+// // Decode the JSON string.
+//           var res = jsonDecode(utf8ResponseString);
+
+// // Use the decoded JSON.
+//           print('--------------------- 55555 ---------' + res);
+//         } else {
+//           print('----------2222222222222-----------' + data);
+//         }
+
         data != '' ? _chatMessages.remove(_chatMessages.last) : null;
 
         // add message to chat as bot type.
@@ -165,17 +186,16 @@ class ChatController extends GetxController {
   }
 }
 
+// "prom"pt": prompt,
 
- // "prom"pt": prompt,
+// "suffix": "7 8 9 10",
+// "temperature": 0.3,
 
-          // "suffix": "7 8 9 10",
-          // "temperature": 0.3,
-
-          // "choices": [
-          //   {
-          //     "text": " 5 6 7 8 9",
-          //     "index": 0,
-          //     "logprobs": null,
-          //     "finish_reason": "length"
-          //   }
-          // ],
+// "choices": [
+//   {
+//     "text": " 5 6 7 8 9",
+//     "index": 0,
+//     "logprobs": null,
+//     "finish_reason": "length"
+//   }
+// ],

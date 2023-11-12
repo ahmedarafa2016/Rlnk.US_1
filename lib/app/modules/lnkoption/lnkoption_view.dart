@@ -33,7 +33,7 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
           },
         ),
         title: const Center(
-          child: Text('Rlnk.Us .> OPtion'),
+          child: Text('Rlnk.Us - > OPtion'),
         ),
         flexibleSpace: const CradientRlnk(),
         actions: <Widget>[

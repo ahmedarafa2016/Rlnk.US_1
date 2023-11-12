@@ -14,7 +14,7 @@ class SettingView extends GetView<SettingController> {
     return Scaffold(
       //App bar
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(appheadr: 'Rlnk.Us.> Setting'),
+      appBar: const MyAppBar(appheadr: 'Rlnk.Us - > Setting'),
       body: SingleChildScrollView(
         child: Center(
           child: Column(

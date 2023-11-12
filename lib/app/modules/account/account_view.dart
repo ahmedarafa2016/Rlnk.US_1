@@ -11,7 +11,7 @@ class AccountView extends GetView<AccountController> {
     return Scaffold(
       //App bar
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(appheadr: 'Rlnk.Us.> Account'),
+      appBar: const MyAppBar(appheadr: 'Rlnk.Us - > Account'),
       body: Column(
         children: [
           const Spacer(

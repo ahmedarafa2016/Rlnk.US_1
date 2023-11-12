@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rlnk_1/pallete.dart';
@@ -15,7 +16,7 @@ class RecentView extends GetView<RecentController> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: NavDrawer(),
-      appBar: const MyAppBar(appheadr: 'Rlnk.Us.> Recent'),
+      appBar: const MyAppBar(appheadr: 'Rlnk.Us - > Recent'),
       body: Column(
         children: [
           Padding(
@@ -271,9 +272,23 @@ class RecentView extends GetView<RecentController> {
                                   const Spacer(
                                     flex: 1, //
                                   ),
-                                  const FaIcon(
-                                    FontAwesomeIcons.clipboardList,
-                                    size: 16,
+                                  GestureDetector(
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.clipboardList,
+                                      size: 16,
+                                    ),
+                                    onTap: () {
+                                      Clipboard.setData(
+                                        ClipboardData(
+                                            text: controller
+                                                .allrecent.data![index].slnk!),
+                                      );
+                                      print(controller
+                                          .allrecent.data![index].slnk!);
+
+                                      // controller
+                                      //     .allrecent.data![index].shortid!;
+                                    },
                                   ),
                                 ],
                               ),
