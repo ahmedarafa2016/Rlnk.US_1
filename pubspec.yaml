@@ -59,6 +59,7 @@ dependencies:
   package_info_plus: ^4.2.0
   carousel_slider: ^4.2.1
   auto_size_text_field: ^2.2.2
+  auto_size_text: ^3.0.0
   # receive_sharing_intent: ^1.4.5
 
 

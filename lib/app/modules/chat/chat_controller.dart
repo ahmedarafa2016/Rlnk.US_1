@@ -29,8 +29,8 @@ class ChatController extends GetxController {
   final scrollController = ScrollController();
 
 //	https://api.openai.com/v1/chat/completions
-  // final baseUrl = Uri.https('api.openai.com', 'v1/completions');
-  final baseUrl = Uri.https('api.openai.com', 'v1/chat/completions');
+  final baseUrl = Uri.https('api.openai.com', 'v1/completions');
+//  final baseUrl = Uri.https('api.openai.com', 'v1/chat/completions');
 
   // Map<String, String> header = {
   //   "Content-Type": "application/json",
@@ -125,12 +125,16 @@ class ChatController extends GetxController {
       if (response.statusCode == 200) {
         var res = jsonDecode(response.body);
 
-        // print(res);
-        // res = utf8.encode(res.trim());
+        data = utf8.decode(res['choices'][0]['text'].codeUnits,
+            allowMalformed: true);
 
-        data = res["choices"][0]["text"];
+        // data = res["choices"][0]["text"];
+
+        print('----------2222222222222222222222--------------------' + data);
+
+        /// Print the result
         // Encoding.getByName('windows-1252')!.encode(responseString)
-        print('------------------- Data ---------------' + data);
+        // print('------------------- Data ---------------' + res);
         // final utf8Encoder = utf8.encoder;
         // data = utf8Encoder.convert(data.toString());
 
@@ -138,23 +142,17 @@ class ChatController extends GetxController {
 //         if (data.contains(RegExp(r'[\x80-\xFF]'))) {
 //           print('----------------------------------');
 //           var responseBytes = utf8.encode(data);
-//           print('1111111111111111111111111111111');
-
 //           var responseString =
 //               Encoding.getByName('windows-1252')!.decode(responseBytes);
-//           print('2222222222222222222222222222');
 // // Now convert it to UTF-8.
 //           var utf8ResponseBytes =
 //               Encoding.getByName('windows-1252')!.encode(responseString);
 //           var utf8ResponseString = utf8.decode(utf8ResponseBytes);
-
 // // Decode the JSON string.
 //           var res = jsonDecode(utf8ResponseString);
-
-// // Use the decoded JSON.
-//           print('--------------------- 55555 ---------' + res);
+// // Use
 //         } else {
-//           print('----------2222222222222-----------' + data);
+//
 //         }
 
         data != '' ? _chatMessages.remove(_chatMessages.last) : null;

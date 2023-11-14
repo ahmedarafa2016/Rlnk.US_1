@@ -40,6 +40,9 @@ class SettingView extends GetView<SettingController> {
                   () => AutoSizeTextField(
                     controller: controller.apikey,
                     obscureText: controller.isPasswordHidden.value,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(16),
                       border: OutlineInputBorder(
@@ -162,6 +165,9 @@ class SettingView extends GetView<SettingController> {
                           () => AutoSizeTextField(
                             controller: controller.apichatGpt,
                             obscureText: controller.isPasswordHiddenchat.value,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.all(16),
                               border: OutlineInputBorder(

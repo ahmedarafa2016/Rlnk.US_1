@@ -36,7 +36,7 @@ class LnkOPtionController extends GetxController {
     getApikey = glb.getkey();
     params['key'] = getApikey;
     params['slnk'] = shortid;
-    getslnk.value = 'Setting Url :${Get.arguments['slnk']}';
+    getslnk.value = '${Get.arguments['slnk']}';
     shortidText.value = '${Get.arguments['slnk']}';
 
     sendData();

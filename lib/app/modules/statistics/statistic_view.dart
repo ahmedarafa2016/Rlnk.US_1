@@ -18,11 +18,13 @@ class StatisticView extends GetView<StatisticController> {
             Get.offAllNamed(Routes.recent);
           },
         ),
-        title: const Center(
+        centerTitle: true,
+        title: const FittedBox(
+          fit: BoxFit.fitWidth,
           child: Text(
             'Rlnk.Us - > Statatistics',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -54,7 +56,7 @@ class StatisticView extends GetView<StatisticController> {
                 child: Text(
                   controller.slnk.value,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
+                      fontSize: 14, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.fade,
                   maxLines: 1,
                 ),
@@ -70,20 +72,57 @@ class StatisticView extends GetView<StatisticController> {
                         children: [
                           Card(
                             child: ListTile(
-                              leading: Column(
-                                children: [
-                                  Text(controller
-                                      .allhits.data![index].cbrowser!),
-                                  Text(controller.allhits.data![index].timeid!),
-                                ],
+                              leading: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.35,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      controller.allhits.data![index].cbrowser!,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      controller.allhits.data![index].timeid!,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               title: //
-                                  Text(controller
-                                      .allhits.data![index].cplatform!),
-                              subtitle:
-                                  Text(controller.allhits.data![index].aip!),
-                              trailing: Text(
-                                  controller.allhits.data![index].country!),
+                                  SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                child: Text(
+                                  controller.allhits.data![index].cplatform!,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              subtitle: Text(
+                                controller.allhits.data![index].aip!,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              trailing: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.07,
+                                child: Text(
+                                  controller.allhits.data![index].country!,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],

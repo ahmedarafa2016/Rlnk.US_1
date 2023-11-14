@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,7 +28,7 @@ class RecentView extends GetView<RecentController> {
                   () => Text(
                     controller.recentTitile.value,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -49,7 +50,7 @@ class RecentView extends GetView<RecentController> {
                         child: const Icon(
                           Icons.search,
                           color: Colors.pink,
-                          size: 20,
+                          size: 18,
                         ),
                         onTap: () {
                           String valCharge = controller.searchController.text;
@@ -117,7 +118,9 @@ class RecentView extends GetView<RecentController> {
                       child: Text(
                         "ID",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     )),
@@ -127,7 +130,9 @@ class RecentView extends GetView<RecentController> {
                       child: Text(
                         "Title",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     )),
                 Container(
@@ -135,8 +140,10 @@ class RecentView extends GetView<RecentController> {
                     padding: const EdgeInsets.all(4.0),
                     child: const Text(
                       "Hits",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     )),
               ],
             ),
@@ -151,21 +158,18 @@ class RecentView extends GetView<RecentController> {
                           child: ListTile(
                             leading: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   controller.allrecent.data![index].shortid!,
-                                  textAlign: TextAlign.left,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     top: 12,
                                     bottom: 12,
                                   ),
-                                  child: Text(
-                                    controller
-                                        .allrecent.data![index].createdate!,
-                                    textAlign: TextAlign.left,
-                                  ),
+                                  child: Text(controller
+                                      .allrecent.data![index].createdate!),
                                 ),
                               ],
                             ),
@@ -177,12 +181,16 @@ class RecentView extends GetView<RecentController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   GestureDetector(
-                                      child: Text(
-                                        controller
-                                            .allrecent.data![index].title!,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
+                                      child: FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: AutoSizeText(
+                                          controller
+                                              .allrecent.data![index].title!,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                       onTap: () {
@@ -201,13 +209,14 @@ class RecentView extends GetView<RecentController> {
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // icon Setting to open lnkoption
                                   GestureDetector(
                                     child: const Icon(
                                       Icons.settings,
                                       color: Colors.white,
-                                      size: 16,
+                                      size: 18,
                                     ),
                                     onTap: () {
                                       String shortid = controller
@@ -227,7 +236,7 @@ class RecentView extends GetView<RecentController> {
                                   GestureDetector(
                                     child: const Icon(
                                       Icons.bar_chart_sharp,
-                                      size: 16,
+                                      size: 18,
                                     ),
                                     onTap: () {
                                       String shortid = controller
@@ -245,6 +254,22 @@ class RecentView extends GetView<RecentController> {
                                       }
                                     },
                                   ),
+                                  const Spacer(
+                                    flex: 1, //
+                                  ),
+                                  GestureDetector(
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.clipboardList,
+                                      size: 18,
+                                    ),
+                                    onTap: () {
+                                      Clipboard.setData(
+                                        ClipboardData(
+                                            text: controller
+                                                .allrecent.data![index].slnk!),
+                                      );
+                                    },
+                                  ),
                                   //icon urlpin
                                   const Spacer(
                                     flex: 1, //
@@ -254,7 +279,7 @@ class RecentView extends GetView<RecentController> {
                                             '0'
                                         ? null
                                         : Icons.key,
-                                    size: 16,
+                                    size: 18,
                                     color: Colors.redAccent,
                                   ),
                                   const Spacer(
@@ -266,29 +291,8 @@ class RecentView extends GetView<RecentController> {
                                             0
                                         ? null
                                         : Icons.disabled_visible,
-                                    size: 16,
+                                    size: 18,
                                     color: Colors.redAccent,
-                                  ),
-                                  const Spacer(
-                                    flex: 1, //
-                                  ),
-                                  GestureDetector(
-                                    child: const FaIcon(
-                                      FontAwesomeIcons.clipboardList,
-                                      size: 16,
-                                    ),
-                                    onTap: () {
-                                      Clipboard.setData(
-                                        ClipboardData(
-                                            text: controller
-                                                .allrecent.data![index].slnk!),
-                                      );
-                                      print(controller
-                                          .allrecent.data![index].slnk!);
-
-                                      // controller
-                                      //     .allrecent.data![index].shortid!;
-                                    },
                                   ),
                                 ],
                               ),

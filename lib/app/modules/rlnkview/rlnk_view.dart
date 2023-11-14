@@ -34,14 +34,14 @@ class RlnkView extends GetView<RlnkController> {
                 // Image on top Page
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 30,
-                    right: 15,
-                    left: 15,
+                    top: 20,
+                    right: 10,
+                    left: 10,
                   ),
                   child: Image.asset(
                     'assets/images/api_lnk.png',
                     fit: BoxFit.contain,
-                    height: MediaQuery.of(context).size.height * 0.15,
+                    height: MediaQuery.of(context).size.height * 0.13,
                     width: MediaQuery.of(context).size.width,
                   ),
                 ),
@@ -52,6 +52,11 @@ class RlnkView extends GetView<RlnkController> {
                     right: 20,
                   ),
                   child: TextFormField(
+                    controller: controller.urlController,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         border: OutlineInputBorder(
@@ -66,17 +71,16 @@ class RlnkView extends GetView<RlnkController> {
                         ),
                         labelText: 'Url',
                         prefixIcon: const Icon(Icons.add_link_sharp)),
-                    controller: controller.urlController,
                     validator: (value) => controller.validateUrl(value!),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 15,
-                    bottom: 10,
+                    top: 20,
+                    bottom: 20,
                   ),
                   child: CustomTextField(
-                    hintText: 'Title - Optional',
+                    labelText: 'Title - Optional',
                     controller: controller.titleiController,
                   ),
                 ),
@@ -89,11 +93,14 @@ class RlnkView extends GetView<RlnkController> {
                   child: Obx(
                     () => Padding(
                       padding: const EdgeInsets.only(
-                        top: 20,
                         bottom: 10,
                       ),
                       child: AutoSizeTextField(
                         controller: controller.urlApiController,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
                         obscureText: controller.isPasswordHidden.value,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(16),
@@ -128,7 +135,13 @@ class RlnkView extends GetView<RlnkController> {
 
                 //  API Key Textformfield
                 ExpansionTile(
-                  title: const Text("Pin Url number"),
+                  title: const Text(
+                    "Pin Url number",
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(
@@ -136,44 +149,47 @@ class RlnkView extends GetView<RlnkController> {
                         left: 15,
                       ),
                       child: Obx(
-                        () => TextFormField(
-                          controller: controller.urlpinController,
-                          obscureText: controller.ispincodeHidden.value,
-                          validator: (value) =>
-                              controller.validatepincode(value!),
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          maxLength: 6,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(16),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                        () => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: controller.urlpinController,
+                            obscureText: controller.ispincodeHidden.value,
+                            validator: (value) =>
+                                controller.validatepincode(value!),
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Pallete.gradient2,
-                                width: 2,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            maxLength: 6,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            labelText: 'API Key',
-                            suffixIcon: InkWell(
-                              child: Icon(
-                                controller.ispincodeHidden.value
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                size: 20,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Pallete.gradient2,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              onTap: () {
-                                controller.ispincodeHidden.value =
-                                    !controller.ispincodeHidden.value;
-                              },
+                              labelText: 'API Key',
+                              suffixIcon: InkWell(
+                                child: Icon(
+                                  controller.ispincodeHidden.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  size: 20,
+                                ),
+                                onTap: () {
+                                  controller.ispincodeHidden.value =
+                                      !controller.ispincodeHidden.value;
+                                },
+                              ),
                             ),
                           ),
                         ),
@@ -196,7 +212,7 @@ class RlnkView extends GetView<RlnkController> {
                         child: Text(
                           controller.regrlnk.value,
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             decoration: TextDecoration.underline,
@@ -239,7 +255,7 @@ class RlnkView extends GetView<RlnkController> {
                             ? 'processing'
                             : 'Get Url Shortener',
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

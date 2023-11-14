@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rlnk_1/pallete.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
+  final String labelText;
   final TextEditingController controller;
   const CustomTextField({
     Key? key,
-    required this.hintText,
+    required this.labelText,
     required this.controller,
   }) : super(key: key);
 
@@ -21,6 +21,10 @@ class CustomTextField extends StatelessWidget {
         ),
         child: TextFormField(
           controller: controller,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+          ),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(16),
             enabledBorder: OutlineInputBorder(
@@ -37,7 +41,7 @@ class CustomTextField extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(10),
             ),
-            hintText: hintText,
+            labelText: labelText,
           ),
           // cursorColor: Colors.red,
           // cursorRadius: const Radius.circular(10),

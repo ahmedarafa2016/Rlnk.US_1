@@ -32,9 +32,16 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
             Get.offAllNamed(Routes.recent);
           },
         ),
-        title: const Center(
-          child: Text('Rlnk.Us - > OPtion'),
-        ),
+        centerTitle: true,
+        title: const FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              'Rlnk.Us - > OPtion',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
         flexibleSpace: const CradientRlnk(),
         actions: <Widget>[
           Padding(
@@ -70,7 +77,7 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
                         child: Text(
                           controller.getslnk.value,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                           ),
@@ -91,7 +98,7 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
                     bottom: 10,
                   ),
                   child: CustomTextField(
-                    hintText: 'Title - Optional',
+                    labelText: 'Title - Optional',
                     controller: controller.titleiController,
                   ),
                 ),
@@ -99,31 +106,36 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
                   padding: const EdgeInsets.only(
                     top: 10,
                     bottom: 10,
-                    left: 17,
-                    right: 17,
                   ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                    maxLength: 6,
-                    decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.all(16),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Pallete.gradient2,
-                            width: 2,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      maxLength: 6,
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        labelText: 'Pin code',
-                        prefixIcon: const Icon(Icons.key)),
-                    controller: controller.urlpinController,
-                    validator: (value) => controller.validatepincode(value!),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Pallete.gradient2,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          labelText: 'Pin code',
+                          prefixIcon: const Icon(Icons.key)),
+                      controller: controller.urlpinController,
+                      validator: (value) => controller.validatepincode(value!),
+                    ),
                   ),
                 ),
 
@@ -138,7 +150,7 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
                     colorOff: Colors.redAccent,
                     iconOn: Icons.event_available,
                     iconOff: Icons.disabled_by_default,
-                    textSize: 14.0,
+                    textSize: 13.0,
                     textOffColor: Colors.black,
                     textOnColor: Colors.black,
                     animationDuration: const Duration(milliseconds: 300),
@@ -187,7 +199,7 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
                               ? 'processing'
                               : 'Save Url Setting',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -280,7 +292,7 @@ class LnkOPtionView extends GetView<LnkOPtionController> {
                                       : const Text(
                                           '',
                                           style: TextStyle(
-                                            fontSize: 15,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
